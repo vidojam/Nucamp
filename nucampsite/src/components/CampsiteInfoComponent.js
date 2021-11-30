@@ -16,6 +16,7 @@ class CommentForm extends Component {
         this.state = {showModel: false} 
     }    
     
+    
 
     handleToggle = () => {
         this.setState({
