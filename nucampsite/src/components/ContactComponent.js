@@ -30,6 +30,8 @@ class Contact extends Component {
             }
         };  
         
+      
+        
        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -78,7 +80,7 @@ class Contact extends Component {
                             <Row classname="form-group">
                                 <Label htmlFor="firstName" md={2}>First Name</Label>
                                 <Col md={10}>
-                                    <Control.text model=".firstName" id="firstName" name="firstName"
+                                <Control.text model=".firstName" id="firstName" name="firstName"
                                         placeholder="First Name"
                                         className="form-control"
                                         validators={{
@@ -100,17 +102,17 @@ class Contact extends Component {
                                     />
                                 </Col>
                             </Row>
-                            <Row classname="form-group">
+                            <Row className="form-group">
                                 <Label htmlFor="lastName" md={2}>Last Name</Label>
                                 <Col md={10}>
                                     <Control.text model=".lastName" id="lastName" name="lastName"
                                         placeholder="Last Name"
                                         className="form-control"
-                                        validators= {{
+                                        validators={{
                                             required,
                                             minLength: minLength(2),
                                             maxLength: maxLength(15)
-                                        }}    
+                                        }}
                                     />
                                     <Errors
                                         className="text-danger"
@@ -125,18 +127,18 @@ class Contact extends Component {
                                     />
                                 </Col>
                             </Row>
-                            <Row classname="form-group">
+                            <Row className="form-group">
                                 <Label htmlFor="phoneNum" md={2}>Phone</Label>
                                 <Col md={10}>
                                     <Control.text model=".phoneNum" id="phoneNum" name="phoneNum"
                                         placeholder="Phone number"
                                         className="form-control"
-                                        validators= {{
+                                        validators={{
                                             required,
                                             minLength: minLength(10),
                                             maxLength: maxLength(15),
                                             isNumber
-                                        }}    
+                                        }}
                                     />
                                     <Errors
                                         className="text-danger"
@@ -152,18 +154,16 @@ class Contact extends Component {
                                     />
                                 </Col>
                             </Row>
-                            <Row classname="form-group">
+                            <Row className="form-group">
                                 <Label htmlFor="email" md={2}>Email</Label>
                                 <Col md={10}>
                                     <Control.text model=".email" id="email" name="email"
                                         placeholder="Email"
                                         className="form-control"
-                                        validators= {{
+                                        validators={{
                                             required,
-                                            minLength: minLength(10),
-                                            maxLength: maxLength(15),
-                                            isNumber
-                                        }}    
+                                            validEmail
+                                        }}
                                     />
                                     <Errors
                                         className="text-danger"
@@ -174,10 +174,10 @@ class Contact extends Component {
                                             required: 'Required',
                                             validEmail: 'Invalid email address'
                                         }}
-                                    />   
+                                    />
                                 </Col>
                             </Row>
-. .                         <Row classname="form-group">
+                         <Row classname="form-group">
                                 <Col md={{size: 4, offset: 2}}>
                                     <div className= "form-check">
                                         <Label check>
