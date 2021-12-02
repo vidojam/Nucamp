@@ -1,11 +1,12 @@
 import * as ActionTypes from './ActionTypes';
 import { baseUrl } from '../shared/baseUrl';
-import { CAMPSITES } from '../shared/campsites'
+
 
 export const fetchCampsites = () => dispatch => {
     dispatch(campsitesLoading());
 
     return fetch(baseUrl + 'campsites')
+    
         .then(response => {
                 if (response.ok) {
                     return response;
