@@ -48,7 +48,7 @@ h2 {
 
 .page-enter {
   opacity: 0;
-  transform: translateX(-100%);
+  transform: translateX(-5000%);
 }
 
 .page-enter-active {
@@ -56,6 +56,7 @@ h2 {
   transform: translateX(0%);
   transition: 300ms ease-out;
 }
+
 .page-exit {
   opacity: 1;
 }

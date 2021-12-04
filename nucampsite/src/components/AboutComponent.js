@@ -1,35 +1,59 @@
 import React from 'react';
 import { Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader, Media } from 'reactstrap';
 import { Link } from 'react-router-dom';
-//import { react } from '@babel/types';
-//import { PARTNERS } from '../shared/partners';
+import { baseUrl } from '../shared/baseUrl';
+import { Loading } from './LoadingComponent';
+import { react } from '@babel/types';
+import { PARTNERS } from '../shared/partners';
 
+function PartnerList({item, isLoading, errMess}) {
+    if (isLoading) {
+        return <Loading />;
+    }
+    if (errMess) {
+        return (
+            <div className="col">
+                <div>
+                    <h4>errMess</h4>
+                </div>
+            </div>
+        )
+    }
+    return (
+        <div className="col mt-4">
+            <h4>errMess</h4>
+            <media list>
+                {partners}
+            </media>
+        </div>
+    )
 
-function About(props) {
     const partners = props.partners.map(partner => {
         return (
            <Media tag="li" key={partner.id}>
-           <RenderPartner partner= {partner} />        
+           <Media partnerheading>{partner.name}</Media>        
            </Media>
         );
-    });
+    }); 
+
+} 
 
 function RenderPartner({partner}) {
     if (partner) {
         return (
             <React.Fragment>
-                <Media object src={partner.image} alt={partner.name} width ="150"></Media>
+                <Media object src={baseUrl + partner.image} alt={partner.name} width ="150"></   Media>
                 <Media body className="ml-5 mb-4"></Media>
                 <Media heading>{partner.name}</Media>
                 {partner.description}
             </React.Fragment>   
         );  
     }  
-} 
 
 
 
- return (
+
+    return (
         <div className="container">
             <div className="row">
                 <div className="col">
@@ -47,6 +71,8 @@ function RenderPartner({partner}) {
                     <p>We present a curated database of the best campsites in the vast woods and backcountry of the World Wide Web Wilderness. We increase access to adventure for the public while promoting safe and respectful use of resources. The expert wilderness trekkers on our staff personally verify each campsite to make sure that they are up to our standards. We also present a platform for campers to share reviews on campsites they have visited with each other.</p>
                 </div>
                 <div className="col-sm-6">
+
+
                     <Card>
                         <CardHeader className="bg-primary text-white"><h3>Facts At a Glance</h3></CardHeader>
                         <CardBody>
@@ -81,14 +107,14 @@ function RenderPartner({partner}) {
                 <div className="col-12">
                     <h3>Community Partners</h3>
                 </div>
-                <div className="col mt-4">
-                    <Media list>
-                        {partners}
-                    </Media>
+                    <div className="col mt-4">
+                        <div key={partner.id} className="col-md-5 m-1">
+                        <renderPartnerList partners={props.partners} />
+                    </div>
                 </div>
             </div>
         </div>
     );
-}
+ }
 
 export default About;
