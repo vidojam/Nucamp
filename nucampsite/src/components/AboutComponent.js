@@ -4,9 +4,18 @@ import { Link } from 'react-router-dom';
 import { baseUrl } from '../shared/baseUrl';
 import { Loading } from './LoadingComponent';
 import { react } from '@babel/types';
-import { PARTNERS } from '../shared/partners';
+import { PARTNERS } from '../shared/partners'
+import { FadeTransform, Fade, Stagger } from 'react-animation-components';
 
 function PartnerList({item, isLoading, errMess}) {
+    const partners = props.partners.map(partner => {
+        return (
+           <Media tag="li" key={partner.id}>
+           <RenderPartner partner={partner.name} />       
+           </Media>
+        );
+    }); 
+
     if (isLoading) {
         return <Loading />;
     }
@@ -19,24 +28,20 @@ function PartnerList({item, isLoading, errMess}) {
             </div>
         )
     }
+  
     return (
         <div className="col mt-4">
             <h4>errMess</h4>
-            <media list>
+            <Media list>
                 {partners}
-            </media>
+            </Media>
         </div>
     )
+}
 
-    const partners = props.partners.map(partner => {
-        return (
-           <Media tag="li" key={partner.id}>
-           <Media partnerheading>{partner.name}</Media>        
-           </Media>
-        );
-    }); 
 
-} 
+
+
 
 function RenderPartner({partner}) {
     if (partner) {
@@ -106,12 +111,12 @@ function RenderPartner({partner}) {
             <div className="row row-content">
                 <div className="col-12">
                     <h3>Community Partners</h3>
+                </div>    
                 </div>
                     <div className="col mt-4">
                         <div key={partner.id} className="col-md-5 m-1">
                         <renderPartnerList partners={props.partners} />
                     </div>
-                </div>
             </div>
         </div>
     );
