@@ -11,6 +11,17 @@
       "id": 1,
       "body": "some comment",
       "postId": 1
+    },
+    {
+      "campsiteId": [
+        {
+          "id": 1,
+          "body": "some comment",
+          "postId": 1
+        }
+      ],
+      "date": "2021-12-05T21:08:52.700Z",
+      "id": 2
     }
   ],
   "profile": {

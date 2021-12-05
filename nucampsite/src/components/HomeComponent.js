@@ -4,12 +4,12 @@ import { Loading } from './LoadingComponent';
 import { baseUrl } from '../shared/baseUrl';
 import { FadeTransform } from 'react-animation-components';
 
-function RenderCard({item, isLoading, errMess}) {
+function RenderCard({ item, isLoading, errMess}) {
     if (isLoading) {
         return <Loading />;
     }
     if (errMess) {
-        return <h4>{errMess}</h4>;
+        return <h4>{errMess}</h4>
     }
     
     return (

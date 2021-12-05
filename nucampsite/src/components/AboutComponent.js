@@ -3,61 +3,10 @@ import { Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader, Media } from 'r
 import { Link } from 'react-router-dom';
 import { baseUrl } from '../shared/baseUrl';
 import { Loading } from './LoadingComponent';
-import { react } from '@babel/types';
-import { PARTNERS } from '../shared/partners'
-import { FadeTransform, Fade, Stagger } from 'react-animation-components';
-
-function PartnerList({item, isLoading, errMess}) {
-    const partners = props.partners.map(partner => {
-        return (
-           <Media tag="li" key={partner.id}>
-           <RenderPartner partner={partner.name} />       
-           </Media>
-        );
-    }); 
-
-    if (isLoading) {
-        return <Loading />;
-    }
-    if (errMess) {
-        return (
-            <div className="col">
-                <div>
-                    <h4>errMess</h4>
-                </div>
-            </div>
-        )
-    }
-  
-    return (
-        <div className="col mt-4">
-            <h4>errMess</h4>
-            <Media list>
-                {partners}
-            </Media>
-        </div>
-    )
-}
+import { Fade, Stagger } from 'react-animation-components';
 
 
-
-
-
-function RenderPartner({partner}) {
-    if (partner) {
-        return (
-            <React.Fragment>
-                <Media object src={baseUrl + partner.image} alt={partner.name} width ="150"></   Media>
-                <Media body className="ml-5 mb-4"></Media>
-                <Media heading>{partner.name}</Media>
-                {partner.description}
-            </React.Fragment>   
-        );  
-    }  
-
-
-
-
+function About(props) {
     return (
         <div className="container">
             <div className="row">
@@ -76,8 +25,6 @@ function RenderPartner({partner}) {
                     <p>We present a curated database of the best campsites in the vast woods and backcountry of the World Wide Web Wilderness. We increase access to adventure for the public while promoting safe and respectful use of resources. The expert wilderness trekkers on our staff personally verify each campsite to make sure that they are up to our standards. We also present a platform for campers to share reviews on campsites they have visited with each other.</p>
                 </div>
                 <div className="col-sm-6">
-
-
                     <Card>
                         <CardHeader className="bg-primary text-white"><h3>Facts At a Glance</h3></CardHeader>
                         <CardBody>
@@ -101,7 +48,7 @@ function RenderPartner({partner}) {
                                 <p className="mb-0">I will not follow where the path may lead, but I will go where there is no path, and I will leave a trail.</p>
                                 <footer className="blockquote-footer">Muriel Strode,{' '}
                                     <cite title="Source Title">"Wind-Wafted Wild Flowers" -
-                                    The Open Court, 1903</cite>
+                                        The Open Court, 1903</cite>
                                 </footer>
                             </blockquote>
                         </CardBody>
@@ -111,15 +58,57 @@ function RenderPartner({partner}) {
             <div className="row row-content">
                 <div className="col-12">
                     <h3>Community Partners</h3>
-                </div>    
                 </div>
-                    <div className="col mt-4">
-                        <div key={partner.id} className="col-md-5 m-1">
-                        <renderPartnerList partners={props.partners} />
-                    </div>
             </div>
+            <PartnerList partners={props.partners} />
         </div>
     );
- }
+}
+
+
+function PartnerList(props, isLoading, errMess) {
+    const partners = props.partners.partners.map(partner => {
+        return (
+            <Fade in key={partner.id}>
+                <Media tag="li">
+                    <RenderPartner partner={partner} />
+                </Media>
+            </Fade>
+        );
+    });
+
+    if (isLoading) {
+        <Loading />;
+    }
+    if (errMess) {
+        return <h4 className="col">{errMess}</h4>
+    }
+    return (
+        <div className="col mt-4">
+            <Stagger in>
+               <Media List>
+                {partners}
+               </Media>
+            </Stagger>   
+        </div>
+    );
+}
+
+function RenderPartner({ partner }) {
+    if (partner) {
+        return (
+            <React.Fragment>
+                <Media object src={baseUrl + partner.image} alt={partner.name} width="150" />
+                <Media body className="ml-5 mb-4" >
+                    <Media heading>{partner.name}</Media>
+                    <Media>{partner.description}</Media>
+                </Media>
+            </React.Fragment>
+        )
+    }
+    return <div />;
+}
+
+
 
 export default About;

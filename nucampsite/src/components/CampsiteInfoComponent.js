@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
-import { Card, CardImg, CardBody, CardText, Breadcrumb, BreadcrumbItem, Modal, Button, Label, Col } from 'reactstrap';
+import { Card, CardImg, CardBody, CardText, CardTitle, Breadcrumb, BreadcrumbItem, Modal, Button, Label, Col } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { Control, LocalForm, Errors } from 'react-redux-form';
 import { Loading } from './LoadingComponent';
 import { baseUrl } from '../shared/baseUrl';
 import { FadeTransform, Fade, Stagger } from 'react-animation-components';
+//import { isTemplateElement } from '@babel/types';
 
 
 const maxLength = len => val => !val || (val.length <= len);
@@ -41,7 +42,7 @@ class CommentForm extends Component {
             <Button outline onClick={this.handleToggle} color="primary"><i className="fa fa-pencil fa-lg" />Submit Comment</Button>
             <Modal isOpen={this.state.showModel} toggle={this.handleToggle}/> 
 
-            <LocalForm onSubmit={values =>this.handleSubmit(values)}>
+            <LocalForm onSubmit={values => this.handleSubmit(values)}>
                 <div className="form-group">
                     <Label htmlFor="rating" md={2}>Rating</Label>  
                     <Control.select model=".rating" id="rating" name="rating"
@@ -96,17 +97,18 @@ class CommentForm extends Component {
 }
 
 
-function RenderCampsite({campsite}) {
-    return(
-        <div className="col-md-5 m-1">
+function RenderCampsite({ campsite }) {
+    return (
+        <div className="col-md-5 m-1" >
             <FadeTransform
                 in
                 transformProps={{
                     exitTransform: 'scale(0.5) translateY(-50%)'
                 }}>
                 <Card>
-                    <CardImg top src={baseUrl + campsite.image} alt={campsite.name} />
-                    <CardBody>
+                    <CardImg src={baseUrl + campsite.image} alt={campsite.name} />
+                     <CardBody>
+                        <CardTitle> {campsite.name} </CardTitle>
                         <CardText>{campsite.description}</CardText>
                     </CardBody>
                 </Card>
