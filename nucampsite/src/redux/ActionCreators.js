@@ -29,13 +29,16 @@ export const fetchCampsites = () => dispatch => {
 };
 
 
+
+
 export const campsitesLoading = () => ({
-    type: ActionTypes.CAMPSITES_LOADING
+    type: ActionTypes.CAMPSITES_LOADING,
 });
 
 export const campsitesFailed = errMess => ({
     type: ActionTypes.CAMPSITES_FAILED,
     payload: errMess
+    
 });
 
 export const addCampsites = campsites => ({
