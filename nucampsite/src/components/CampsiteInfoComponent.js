@@ -5,7 +5,7 @@ import { Control, LocalForm, Errors } from 'react-redux-form';
 import { Loading } from './LoadingComponent';
 import { baseUrl } from '../shared/baseUrl';
 import { FadeTransform, Fade, Stagger } from 'react-animation-components';
-//import { isTemplateElement } from '@babel/types';
+
 
 
 const maxLength = len => val => !val || (val.length <= len);
@@ -13,16 +13,22 @@ const minLength = len => val => val && (val.length >= len);
 
 class CommentForm extends Component {
     constructor(props) {
-        super(props)
-        this.state = {showModel: false} 
-    }    
-    
-    
+        super(props);
+        this.state = {
+            rating: '1',
+            author: '',
+            text: '',
+            touched: {
+                ratings: false,
+                author: false,
+                text: false
+            },
+            isModalOpen: false
+        };
 
-    handleToggle = () => {
-        this.setState({
-            showModel: !this.state.showModel,
-        });
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.toggleModal = this.toggleModal.bind(this);
+    
     }
 
     toggleModal() {

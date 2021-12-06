@@ -38,7 +38,7 @@ export const campsitesLoading = () => ({
 export const campsitesFailed = errMess => ({
     type: ActionTypes.CAMPSITES_FAILED,
     payload: errMess
-    
+
 });
 
 export const addCampsites = campsites => ({
@@ -175,13 +175,12 @@ export const fetchPartners = () => dispatch => {
             error => {
                 const errMess = new Error(error.message);
                 throw errMess;
-            } 
-            
+            }        
         )
         .then(response => response.json())
         .then(partners => dispatch(addPartners(partners)))
         .catch(error => dispatch(partnersFailed(error.message)));
-      
+          
 };
 
 export const partnersLoading = () => ({

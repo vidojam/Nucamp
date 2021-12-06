@@ -45,6 +45,7 @@ class Main extends Component {
         const HomePage = () => {
             return (
                 <Home
+
                     campsite={this.props.campsites.campsites.filter(campsite => campsite.featured)[0]}
                     campsitesLoading={this.props.campsites.isLoading}
                     campsitesErrMess={this.props.campsites.errMess}
@@ -56,6 +57,7 @@ class Main extends Component {
                     partner={this.props.partners.partners.filter(partner => partner.featured)[0]}
                     partnerLoading={this.props.partners.isLoading}
                     partnerErrMess={this.props.partners.errMess}
+
                 />
             );
         };
@@ -63,12 +65,12 @@ class Main extends Component {
         const CampsiteWithId = ({ match }) => {
             return (
                 <CampsiteInfo
-                    campsite={this.props.campsites.campsites.filter(campsite => campsite.id === +match.params.campsiteId)[0]}
-                    isLoading={this.props.campsites.isLoading}
-                    errMess={this.props.campsites.errMess}
-                    comments={this.props.comments.comments.filter(comment => comment.campsiteId === +match.params.campsiteId)}
-                    commentsErrMess={this.props.comments.errMess}
-                    postComment={this.props.postComment}
+                  campsite={this.props.campsites.campsites.filter(campsite => campsite.id === +match.params.campsiteId)[0]}
+                  isLoading={this.props.campsites.isLoading}
+                  errMess={this.props.campsites.errMess}
+                  comments={this.props.comments.comments.filter(comment => comment.campsiteId === +match.params.campsiteId)}
+                  commentsErrMess={this.props.comments.errMess}
+                  postComment={this.props.postComment}
                 />
             );
         };
@@ -79,17 +81,16 @@ class Main extends Component {
                 <TransitionGroup>
                     <CSSTransition key={this.props.location.key} classNames="page" timeout={300}>
                         <Switch>
-                            <Route path='/home' component={HomePage} />
-                            <Route exact path='/directory' render={() => <Directory campsites={this.props.campsites} />} />
-                            <Route path='/directory/:campsiteId' component={CampsiteWithId} />
-
-                            <Route exact path='/contactus' render={() =>
-                                <Contact
-                                    postFeedback={this.props.postFeedback}
-                                    resetFeedbackForm={this.props.resetFeedbackForm}
-                                />} />
-                            <Route exact path='/aboutus' render={() => <About partners={this.props.partners} />} />
-                            <Redirect to='/home' />
+                              <Route path='/home' component={HomePage} />
+                              <Route exact path='/directory' render={() => <Directory campsites={this.props.campsites} />} />
+                              <Route path='/directory/:campsiteId' component={CampsiteWithId} />
+                              <Route exact path='/contactus' render={() =>
+                                  <Contact
+                                      postFeedback={this.props.postFeedback}
+                                      resetFeedbackForm={this.props.resetFeedbackForm}
+                                  />} />
+                              <Route exact path='/aboutus' render={() => <About partners={this.props.partners} />} />
+                              <Redirect to='/home' />
                         </Switch>
                     </CSSTransition>
                 </TransitionGroup>
